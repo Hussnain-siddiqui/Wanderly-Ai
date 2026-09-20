@@ -1,0 +1,33 @@
+/* Wanderly AI - small custom layer on top of Tailwind CSS */
+html { scroll-padding-top: 5rem; }
+
+/* Visible keyboard focus everywhere */
+:focus-visible { outline: 3px solid #FFB43B; outline-offset: 2px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset: 0; }
+
+/* Contour-line pattern used on dark sections and destination cards */
+.topo {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420' fill='none' stroke='%23ffffff' stroke-opacity='.07'%3E%3Cellipse cx='210' cy='210' rx='60' ry='40' transform='rotate(-20 210 210)'/%3E%3Cellipse cx='210' cy='210' rx='100' ry='72' transform='rotate(-20 210 210)'/%3E%3Cellipse cx='210' cy='210' rx='145' ry='105' transform='rotate(-20 210 210)'/%3E%3Cellipse cx='210' cy='210' rx='195' ry='140' transform='rotate(-20 210 210)'/%3E%3C/svg%3E");
+  background-size: 420px 420px;
+}
+
+/* Hero preview: lines appear one after another, once on page load */
+@keyframes lineIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.reveal-line { opacity: 0; animation: lineIn .5s ease forwards; }
+
+/* Interest chips in the planner form */
+.chip { cursor: pointer; }
+.chip-face {
+  display: inline-block; padding: .45rem 1rem; font-size: .875rem; font-weight: 500;
+  color: #334155; background: #fff; border: 1px solid #cbd5e1; border-radius: 9999px;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.chip:hover .chip-face { border-color: #177C89; }
+.chip input:checked + .chip-face { background: #177C89; border-color: #177C89; color: #fff; }
+.chip input:focus-visible + .chip-face { outline: 3px solid #FFB43B; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .reveal-line { opacity: 1; animation: none; }
+  * { transition-duration: .01ms !important; }
+}
